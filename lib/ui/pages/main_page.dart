@@ -1,6 +1,11 @@
+import 'package:airplane/cubit/page_cubit.dart';
 import 'package:airplane/shared/theme.dart';
 import 'package:airplane/ui/pages/home_page.dart';
+import 'package:airplane/ui/pages/settings_page.dart';
+import 'package:airplane/ui/pages/transaction_page.dart';
+import 'package:airplane/ui/pages/wallet_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../widgets/custom_button_navigation_item.dart';
 
@@ -9,8 +14,19 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget buildContent() {
-      return HomePage();
+    Widget buildContent(int currentIndex) {
+      switch (currentIndex) {
+        case 0:
+          return HomePage();
+        case 1:
+          return TransactionPage();
+        case 2:
+          return WalletPage();
+        case 3:
+          return SettingsPage();
+        default:
+          return HomePage();
+      }
     }
 
     Widget customBottomNavigation() {
@@ -28,16 +44,19 @@ class MainPage extends StatelessWidget {
             children: [
               CustomBottomNavigationItem(
                 imageUrl: 'assets/fi_globe.png',
-                isSelected: true,
+                index: 0,
               ),
               CustomBottomNavigationItem(
                 imageUrl: 'assets/fi_book-open.png',
+                index: 1,
               ),
               CustomBottomNavigationItem(
                 imageUrl: 'assets/fi_credit-card.png',
+                index: 2,
               ),
               CustomBottomNavigationItem(
                 imageUrl: 'assets/fi_settings.png',
+                index: 3,
               )
             ],
           ),
@@ -45,10 +64,14 @@ class MainPage extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-        backgroundColor: kBackgroundColor,
-        body: Stack(
-          children: [buildContent(), customBottomNavigation()],
-        ));
+    return BlocBuilder<PageCubit, int>(
+      builder: (context, currentIndex) {
+        return Scaffold(
+            backgroundColor: kBackgroundColor,
+            body: Stack(
+              children: [buildContent(currentIndex), customBottomNavigation()],
+            ));
+      },
+    );
   }
 }
