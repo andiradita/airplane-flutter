@@ -1,30 +1,26 @@
 import 'package:airplane/shared/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/custom_button.dart';
+
 class BonusPage extends StatelessWidget {
   const BonusPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Widget cardBonus(){
+    Widget cardBonus() {
       return Container(
         width: 300,
         height: 211,
         padding: EdgeInsets.all(defaultMargin),
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              'assets/bonus_card.png'
-            )
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: kPrimaryColor.withOpacity(0.5),
-              blurRadius: 50,
-              offset: Offset(0, 10)
-            )
-          ]
-        ),
+            image: DecorationImage(image: AssetImage('assets/bonus_card.png')),
+            boxShadow: [
+              BoxShadow(
+                  color: kPrimaryColor.withOpacity(0.5),
+                  blurRadius: 50,
+                  offset: Offset(0, 10))
+            ]),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -32,59 +28,45 @@ class BonusPage extends StatelessWidget {
               children: [
                 Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Name',
-                        style: whiteTextStyle.copyWith(
-                            fontWeight: light
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Name',
+                          style: whiteTextStyle.copyWith(fontWeight: light),
                         ),
-                      ),
-                      Text(
-                        'Kezia Anne',
-                        style: whiteTextStyle.copyWith(
-                          fontSize: 20,
-                            fontWeight: medium
+                        Text(
+                          'Kezia Anne',
+                          style: whiteTextStyle.copyWith(
+                              fontSize: 20, fontWeight: medium),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ]
-                  ),
+                      ]),
                 ),
                 Container(
                   width: 24,
                   height: 24,
                   margin: EdgeInsets.only(right: 6),
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(
-                        'assets/logo.png'
-                      )
-                    )
-                  ),
+                      image: DecorationImage(
+                          image: AssetImage('assets/logo.png'))),
                 ),
                 Text(
                   'Pay',
-                  style: whiteTextStyle.copyWith(
-                    fontSize: 16,
-                      fontWeight: medium
-                  ),
+                  style:
+                      whiteTextStyle.copyWith(fontSize: 16, fontWeight: medium),
                 )
               ],
             ),
-            SizedBox(height: 41,),
+            SizedBox(
+              height: 41,
+            ),
             Text(
               'Balance',
-              style: whiteTextStyle.copyWith(
-                  fontWeight: light
-              ),
+              style: whiteTextStyle.copyWith(fontWeight: light),
             ),
             Text(
               'IDR 280.000.000',
-              style: whiteTextStyle.copyWith(
-                  fontSize: 26,
-                  fontWeight: medium
-              ),
+              style: whiteTextStyle.copyWith(fontSize: 26, fontWeight: medium),
             ),
           ],
         ),
@@ -98,12 +80,12 @@ class BonusPage extends StatelessWidget {
           children: [
             Text(
               'Big Bonus 🎉',
-              style: blackTextStyle.copyWith(
-                fontSize: 32,
-                fontWeight: semiBold
-              ),
+              style:
+                  blackTextStyle.copyWith(fontSize: 32, fontWeight: semiBold),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Text(
               'We give you early credit so that\nyou can buy a flight ticket',
               style: greyTextStyle.copyWith(
@@ -117,29 +99,14 @@ class BonusPage extends StatelessWidget {
       );
     }
 
-    Widget startFlyButton(){
-      return Container(
-        margin: EdgeInsets.only(top: 50),
+    Widget startFlyButton() {
+      return CustomButton(
+        title: 'Start Fly Now',
         width: 220,
-        height: 55,
-        child: TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-            backgroundColor: kPrimaryColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                defaultRadius
-              ),
-            ),
-          ),
-          child: Text(
-            'Start Fly Now',
-            style: whiteTextStyle.copyWith(
-              fontWeight: medium,
-              fontSize: 18
-            ),
-          ),
-        ),
+        margin: const EdgeInsets.only(top: 50),
+        onPressed: () {
+          Navigator.pushNamed(context, '/main');
+        },
       );
     }
 
@@ -148,11 +115,7 @@ class BonusPage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            cardBonus(),
-            description(),
-            startFlyButton()
-          ],
+          children: [cardBonus(), description(), startFlyButton()],
         ),
       ),
     );

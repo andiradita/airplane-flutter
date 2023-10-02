@@ -1,4 +1,5 @@
 import 'package:airplane/shared/theme.dart';
+import 'package:airplane/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class GetStartedPage extends StatelessWidget {
@@ -10,16 +11,11 @@ class GetStartedPage extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  'assets/plane_cover.png'
-                )
-              )
-            )
-          ),
+              width: double.infinity,
+              height: double.infinity,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/plane_cover.png')))),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -42,29 +38,13 @@ class GetStartedPage extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                Container(
-                  margin: const EdgeInsets.only(top: 50, bottom: 80),
-                  width: 220,
-                  height: 55,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/sign-up');
-                      },
-                      style: TextButton.styleFrom(
-                        backgroundColor: kPrimaryColor,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(defaultRadius)
-                        )
-                      ),
-                      child: Text(
-                        'Get Started',
-                        style: whiteTextStyle.copyWith(
-                          fontSize: 18,
-                          fontWeight: medium
-                        ),
-                      ),
-                    ),
-                ),
+                CustomButton(
+                    title: 'Get Started',
+                    width: 220,
+                    margin: const EdgeInsets.only(top: 50, bottom: 80),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/sign-up');
+                    }),
               ],
             ),
           )
