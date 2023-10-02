@@ -15,11 +15,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/' : (context) => SplashPage(),
-        '/get-started' : (context) => GetStartedPage(),
-        '/sign-up' : (context) => SignUpPage(),
-        '/bonus' : (context) => BonusPage(),
-        '/main' : (context) => MainPage(),
+        '/': (context) => SplashPage(),
+        '/get-started': (context) => GetStartedPage(),
+        '/sign-up': (context) => SignUpPage(),
+        '/bonus': (context) => BonusPage(),
+        '/main': (context) => MainPage(),
       },
     );
   }
