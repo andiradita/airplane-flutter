@@ -11,11 +11,17 @@ class GetStartedPage extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/plane_cover.png')))),
+            width: double.infinity,
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'assets/plane_cover.png',
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,

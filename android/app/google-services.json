@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "160004486925",
+    "project_id": "airplane-374ab",
+    "storage_bucket": "airplane-374ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160004486925:android:a0ad51e8cc6401fd022244",
+        "android_client_info": {
+          "package_name": "com.andiradita.airplane"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKZ1HgmI4R2mAZo_rw06dd2FCTSJDziDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

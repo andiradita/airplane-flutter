@@ -65,7 +65,10 @@ class SignUpPage extends StatelessWidget {
     Widget tacButton() {
       return Container(
         alignment: Alignment.center,
-        margin: EdgeInsets.only(top: 50),
+        margin: EdgeInsets.only(
+          top: 50,
+          bottom: 50,
+        ),
         child: Text(
           'Terms and Conditions',
           style: greyTextStyle.copyWith(
