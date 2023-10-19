@@ -1,11 +1,19 @@
+import 'package:airplane/cubit/auth_cubit.dart';
 import 'package:airplane/shared/theme.dart';
 import 'package:airplane/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../widgets/custom_text_form_field.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  SignUpPage({Key? key}) : super(key: key);
+
+  final TextEditingController nameController = TextEditingController(text: '');
+  final TextEditingController emailController = TextEditingController(text: '');
+  final TextEditingController passwordController =
+      TextEditingController(text: '');
+  final TextEditingController hobbyController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +30,36 @@ class SignUpPage extends StatelessWidget {
 
     Widget inputSection() {
       Widget submitButton() {
-        return CustomButton(
-          title: 'Get Started',
-          onPressed: () {
-            Navigator.pushNamed(context, '/bonus');
+        return BlocConsumer<AuthCubit, AuthState>(
+          listener: (context, state) {
+            if (state is AuthSuccess) {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/bonus', (route) => false);
+            } else if (state is AuthFailed) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.error),
+                  backgroundColor: kRedColor,
+                ),
+              );
+            }
+          },
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return CustomButton(
+              title: 'Get Started',
+              onPressed: () {
+                context.read<AuthCubit>().signUp(
+                    email: emailController.text,
+                    password: passwordController.text,
+                    name: nameController.text,
+                    hobby: hobbyController.text);
+              },
+            );
           },
         );
       }
@@ -40,19 +74,23 @@ class SignUpPage extends StatelessWidget {
         child: Column(
           children: [
             CustomTextFormField(
+              controller: nameController,
               title: 'Full Name',
               hintText: 'Your full name',
             ),
             CustomTextFormField(
+              controller: emailController,
               title: 'Email Address',
               hintText: 'Your email address',
             ),
             CustomTextFormField(
+              controller: passwordController,
               title: 'Password',
               hintText: 'Your password',
               isObscure: true,
             ),
             CustomTextFormField(
+              controller: hobbyController,
               title: 'Hobby',
               hintText: 'Your Hobby',
             ),
